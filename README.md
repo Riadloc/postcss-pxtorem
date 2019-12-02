@@ -1,11 +1,11 @@
 # postcss-pxtorem [![NPM version](https://badge.fury.io/js/postcss-pxtorem.svg)](http://badge.fury.io/js/postcss-pxtorem)
 
-A plugin for [PostCSS](https://github.com/ai/postcss) that generates rem units from pixel units.
+A plugin for [PostCSS](https://github.com/ai/postcss) that generates rem units from pixel units. Add a new option to exclude folder be transformed.
 
 ## Install
 
 ```shell
-$ npm install postcss-pxtorem --save-dev
+$ npm install postcss-pxtorem-black --save-dev
 ```
 
 ## Usage
@@ -65,6 +65,7 @@ Default:
     unitPrecision: 5,
     propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
     selectorBlackList: [],
+    folderBlackList: [],
     replace: true,
     mediaQuery: false,
     minPixelValue: 0
@@ -84,6 +85,11 @@ Default:
         - `['body']` will match `.body-class`
     - If value is regexp, it checks to see if the selector matches the regexp.
         - `[/^body$/]` will match `body` but not `.body`
+- `folderBlackList` (Array) The folder name to ignore and leave as px.
+    - If value is string, it checks to see if file path contains the string.
+        - `['/PC']` will match path `/PC/index.html`
+    - If value is regexp, it checks to see if file path matches the regexp.
+        - `[/PC/i]` will match path `/pc/index.html`
 - `replace` (Boolean) replaces rules containing rems instead of adding fallbacks.
 - `mediaQuery` (Boolean) Allow px to be converted in media queries.
 - `minPixelValue` (Number) Set the minimum pixel value to replace.

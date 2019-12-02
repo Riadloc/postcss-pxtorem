@@ -12,7 +12,8 @@ var defaults = {
     propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
     replace: true,
     mediaQuery: false,
-    minPixelValue: 0
+    minPixelValue: 0,
+    folderBlackList: []
 };
 
 var legacyOptions = {
@@ -33,7 +34,11 @@ module.exports = postcss.plugin('postcss-pxtorem', function (options) {
 
     var satisfyPropList = createPropListMatcher(opts.propList);
 
-    return function (css) {
+    return function (css, result) {
+        if (blacklistedFolder(opts.folderBlackList, css.source.input.file)) {
+            result.root = css;
+            return;
+        }
 
         css.walkDecls(function (decl, i) {
             // This should be the fastest test and will remove most declarations
@@ -114,6 +119,13 @@ function blacklistedSelector(blacklist, selector) {
         if (typeof regex === 'string') return selector.indexOf(regex) !== -1;
         return selector.match(regex);
     });
+}
+
+function blacklistedFolder(blacklist, path) {
+    return blacklist.some(function (regex) {
+        if (typeof regex === 'string') return path.indexOf(regex) !== -1;
+        return path.match(regex);
+    })
 }
 
 function createPropListMatcher(propList) {

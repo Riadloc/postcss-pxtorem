@@ -2,13 +2,13 @@
   "name": "postcss-pxtorem",
   "description": "A CSS post-processor that converts px to rem.",
   "version": "4.0.1",
-  "author": "cuth",
+  "author": "riadloc",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cuth/postcss-pxtorem.git"
+    "url": "https://github.com/Riadloc/postcss-pxtorem.git"
   },
-  "bugs": "https://github.com/cuth/postcss-pxtorem/issues",
+  "bugs": "https://github.com/Riadloc/postcss-pxtorem/issues",
   "main": "index.js",
   "scripts": {
     "test": "jasmine-node spec"
@@ -22,7 +22,9 @@
     "pixel",
     "px",
     "postcss",
-    "postcss-plugin"
+    "postcss-plugin",
+    "exclude",
+    "folder"
   ],
   "dependencies": {
     "object-assign": "^4.1.0",
